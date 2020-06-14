@@ -1,0 +1,652 @@
+/* importar fuentes*/
+@font-face{
+    font-family: "TrebuchetMS";
+    src: url('./fonts/TrebuchetMS.ttf');
+}
+
+@font-face{
+    font-family: "BebasNeue";
+    src: url('./fonts/BebasNeue.otf');
+}
+
+@font-face{
+    font-family: "webSymbolsRegular";
+    src: url('./fonts/websymbols-regular-webfont.eot');
+    src: url('./fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/websymbols-regular-webfont.woff') format('woff'), url('./fonts/websymbols-regular-webfont.ttf') format('truetype'), url('./fonts/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+}
+
+
+/* reiniciar propiedades de todos los elementos*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+}
+
+body{
+    /*background-image: url(./img/pattern.png);*/
+
+    /*inicializar la plantilla grid*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 100px) 300px 520px  50px 350px;
+    background-image: url('./img/pattern.png');
+}
+
+/*propiedades del encabezado*/
+
+.header, .header-container, 
+.header-container__logo{
+    display: flex;
+    align-items: center; /*centrado vertical*/
+    justify-content: center; /*centrado horizontalmente*/
+}
+
+.header{
+    grid-column: 1/-1; /* ocupe todas las columnas*/
+    background-color: black;
+}
+
+.header-container{
+    width: 80%;
+    height: 60%;
+    /*background-color: gold;*/
+    padding: 0 0.5rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.header-container__logo{
+    width: 35%;
+    height: 66%;
+    background-color:#37bcf9;
+    font-size: 1.2em;
+    overflow: hidden;
+}
+
+.header-container__logo:hover{
+    border-radius: 2px;
+    background-color: #ccc;
+    color: black;
+}
+
+/*animaciones para el logo*/
+.header-container__logo:hover span{
+     animation: fromleft 600ms linear; /* crear una animacion = nombre, duracion y que sea lineal*/
+}
+
+.header-container__logo:hover h3{
+    animation: fromright 600ms linear;
+}
+
+/*crear la animacion*/
+@keyframes fromleft{
+    0%{
+        transform: translateX(-200%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes fromright{
+    0%{
+        transform: translateX(200%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+.header-container__logo span{
+    display: block; /*pueda dimensionarse el elemento*/
+    width: 50%;
+    text-align: right;
+    padding-right: 3%;
+    font-family: 'webSymbolsRegular';  
+}
+
+.header-container__logo h3{
+    width: 50%;
+    font-weight: bold;
+}
+
+.header-container__menu{
+    width: 65%;
+}
+
+.header-container__menu ul{
+    list-style: none;
+    display: flex;
+}
+
+.header-container__menu ul li{
+    flex: auto;        /*permite que el navegador ponga los elementos equitativamente y deje ingresar nuevos*/
+    text-align: right;
+}
+
+/*fin de propiedades del encabezado*/
+
+/* propiedades del titulo de inicio*/
+
+.main-information, 
+.main-information__title{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+.main-information{
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    padding: 0 0.5rem;
+}
+
+.main-information__title{
+    
+    width: 80%;
+    height: 50%;
+    font-size: 1.5em;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 2px black;
+    outline: 1px solid  gray;
+    outline-offset: 5px;
+    box-shadow: 0px 0px 3px gray;
+    background-image: url(./img/bakbaner.png);
+    animation: backbanner 25s linear; /*animacion*/
+    animation-iteration-count: infinite;
+}
+
+/* definicion de la animacion*/
+@keyframes backbanner{
+    0%{
+        background-position: top left;
+    }
+    50%{
+        background-position: -350px -250px;
+    }
+    100%{
+        background-position: top left;
+    }
+}
+
+
+/* estilos de las tarjetas*/
+
+.cards, .cards__element, 
+.cards_element--icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.cards{
+    grid-column: 1/-1;
+    grid-row: 3/4;
+    justify-content: space-around;
+    padding: 0 5rem;
+}
+
+.cards__element{
+    overflow: hidden; 
+    flex: 0 1 200px; /*el elemento ocupa 200px de ancho pero permite comprimirse mas no expandirse*/
+    height: 80%;
+    margin: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 3px gray;
+    cursor: pointer;  /* cambia el cursor cuando se posiciona sobre el elemento*/
+    flex-direction: column;
+    transition: all 350ms;
+}
+
+
+.cards_element--icon{
+    font-family: 'webSymbolsRegular';
+    font-size: 2em;
+    width: 100%;
+    height: 40%;
+    background-color: hsl(300, 50%, 50%);
+}
+
+.cards__element:hover .cards_element--icon{
+    font-size: 2.5em;
+    color:white;
+    background-color: #00538c;
+    animation: showicon 400ms linear;
+}
+
+@keyframes showicon{
+    from{
+        transform: translateY(-200%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+
+.cards_element--title{
+    width:100%;
+    height:15%;
+    text-align: center;
+    font-family: 'TrebuchetMS';
+    font-size: 1em;
+    font-weight: bold;
+    padding-top: 3%;
+    color: #00538c;
+}
+
+
+.cards__element:hover .cards_element--title{
+    animation: showtitle 400ms linear;
+}
+
+@keyframes showtitle{
+    from{
+        transform: translateY(-300%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+.cards_element--parag{
+    width:100%;
+    height:45%;
+    text-align: center;
+    color: #00538c;
+    font-size: 1em;
+    padding-top: 2%;
+}
+.cards__element:hover .cards_element--parag{
+    animation: showparag 400ms linear;
+}
+
+@keyframes showparag{
+    from{
+        transform: translateX(-300%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}
+
+/*estilos de la barra lateral*/
+
+.icons{
+    display: block; /*pueda dimensionarse el elemento*/
+    font-family: 'webSymbolsRegular';
+    font-size: 0.85em;
+}
+
+.aside{
+    grid-column: 4/-1;
+    grid-row: 4/5;
+    display: flex;
+    justify-content: center;    
+}
+
+.form{
+    width: 85%;
+    height: 100%;
+    margin: 0% 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form h3, .articles h3{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-image: url('./img/pxgray.png');
+    box-shadow: 0px 1px 0px #393d3f, 1px 2px 0px #393d3f, 2px 3px 0px #393d3f; /* le da un sombreado tridimensional*/
+    font-family: "BebasNeue";
+    text-transform: uppercase;
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    margin: 8px 3%;
+
+}
+
+/*estilos del buscador*/
+
+.form__search{
+    display: flex;
+    height: 30px;
+    margin: 0 3%;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 4px #ccc inset;
+}
+
+.form__search input[type="text"]{
+    width: 85%;
+    border: none;
+    border-radius: 5px;
+    color: #ccc;
+    transition: all 250ms;
+}
+
+.form__search input[type="text"]:focus{
+    color: #555;
+}
+
+.form__search input[type="button"]{
+    width: 15%;
+    cursor: pointer;
+}
+
+
+/* estilos del login*/
+
+.form__login, 
+.form__nets, .form__sponsors{
+    background-color: white;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 3px 7px rgba(0, 0, 0, 0.3), 0px 1px white inset, 0px -3px 2px rgba(0, 0, 0, 0.3) inset;
+}
+
+.form__login, .form__data{
+    padding: 2%;
+}
+
+.form__login{
+    margin: 0 3%;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__data--field{
+    display: flex;
+    margin: 2% 0%;
+    height: 30px;
+    position: relative; /*permite posicionar elementos*/
+}
+
+.form__data--field label{
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 0.95em;
+    position: absolute; /* se posiciona sin conserva el espacio en el flujo*/    
+}
+
+.form__data--field input[type="email"],
+.form__data--field input[type="password"]{
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #ccc inset;
+    border-radius: 5px;
+    padding-left: 10%;
+    
+}
+
+/*estilos de los botones*/
+
+.form__buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2%;
+    height: 35px;
+    margin-bottom: 2%;
+}
+
+.form__buttons input{
+    width: 49%;
+    color: white;
+    background: linear-gradient(to bottom, #3eb8e5 0%, #2ca0ca 100%);
+    cursor: pointer;
+    border: 1px solid #156785;
+    font-family: "TrebuchetMS";
+    font-weight: lighter;
+}
+
+.form__login a{
+    color: #555;
+    margin: 1% 2%;
+}
+
+.form__login a:hover{
+    text-decoration: underline;
+    color: #2f78bc;
+}
+
+/* estilos para las redes*/
+
+.form__nets{
+    margin: 0 3%;
+    display: flex;
+    flex-direction: column;
+    padding: 2% 0;
+    
+}
+
+.network{
+    display: flex;
+    cursor: pointer;
+    margin: 1% 2%;
+}
+
+.network a,
+.network p{
+    color: #333;
+    font-size: 1.5em;
+    margin: 0 2%;
+    
+}
+
+.network a{
+    width: 10%;
+}
+
+.network p{
+    width: 90%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0px 0px 1px #ccc;
+    border: 3px solid white;
+    box-shadow: 0px 0px 4px #ccc;
+    background-color: #f4f7fe;
+    /*se oculta el elemento y se muestra cuando se haga hever sobre el*/
+    transform: translateX(-80%);
+    opacity: 0;
+    transition: all 400ms;
+}
+
+.network:hover p{
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+
+
+/*estilos para los articulos*/
+
+.articles{
+    grid-column: 1/4;
+    grid-row: 4/5;
+    display: flex;
+    flex-direction: column;
+}
+
+.articles h3{
+    height: 15%;
+    line-height: 80px;
+}
+
+.articles-container{
+    height: 85%;
+    overflow: auto;
+    margin: 1% 3%;
+}
+
+.articles-container article{
+    margin: 1% 3%;
+    padding: 1%;
+    border: 1px solid #ccc;
+    font-family: "TrebuchetMS";
+    background-color: white;
+    color: black;
+    box-shadow: 1px 1px 2px #ddd;
+    overflow: hidden; /*evita problemas con el float*/
+}
+
+.articles-container article h4{
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+.articles-container article h4 a{
+    color: #00538c;
+}
+
+.articles-container article h4 a:hover{
+    text-decoration: underline;
+}
+
+.article__data{
+    height: 30px;
+    line-height: 20px;
+    float: right;   /*para que el texto rodee la fecha*/
+    background-color: #393d3f;
+    color: white;
+    margin: -10px;
+    padding: 4px;
+    border-radius: 0px 0px 0px 5px;
+}
+
+.article__data span{
+    margin: 5px;
+}
+
+.articles-container article p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*estilos para el boton del blog*/
+
+.button-blog{
+    grid-column: 1/4;
+    grid-row: 5/6;
+    display: flex;
+    justify-content: center;
+    transition: all 400ms;
+}
+
+.button-blog article{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "BebasNeue";
+    letter-spacing: 2px;
+    font-size: 1.4em;
+    color: #00538c;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.button-blog:hover article{
+    background-color: #00538c;;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px grey;
+}
+
+.button-blog:hover a{
+    color: white;
+}
+
+/*estilos para el footer*/
+
+.footer{
+    grid-column: 1/-1;
+    grid-row: 6/7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2%;
+}
+
+.footer div{
+    width: 30%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "TrebuchetMS";
+    padding: 2%;
+}
+
+.footer h5{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: "BebasNeue";
+    font-size: 1.1em;
+    color: black;
+    border-radius: 5px;
+    background-image: url('./img/pxgray.png');
+    box-shadow: 0px 1px 0px #393d3f, 1px 2px 0px #393d3f, 2px 3px 0px #393d3f;
+}
+
+.footer__menu{
+    width: 100%;
+    font-size: 1.5em;
+    border-radius: 5px;
+}
+
+.footer__menu ul{
+    list-style: none;
+}
+
+.footer__menu ul li{
+    margin-top: 10px;
+    margin-left: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.footer__menu ul li a{
+    color: #00538c;
+    font-family: "BebasNeue";
+    letter-spacing: 1px;
+    font-weight: lighter;
+    cursor: pointer;
+    transition: all 350ms;
+}
+
+.footer__menu ul li:hover a{
+    padding: 10%;
+}
+
+
+
+.footer div iframe{
+    width:100%; 
+    height:100%;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px gray;
+    margin-top: 3%;
+}
+
+.footer div p{
+    text-align: center;
+    color: #00538c;
+    font-family: "BebasNeue";
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
